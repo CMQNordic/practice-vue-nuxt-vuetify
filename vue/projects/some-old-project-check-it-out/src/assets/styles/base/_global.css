@@ -1,0 +1,13 @@
+/*  _____________________________________________________ */
+/*  Custom global definitions */
+
+body {
+  font-family: 'Koho', 'Jost', sans-serif;
+  background-color: $colorMainBackground;
+  color: $colorMainText;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

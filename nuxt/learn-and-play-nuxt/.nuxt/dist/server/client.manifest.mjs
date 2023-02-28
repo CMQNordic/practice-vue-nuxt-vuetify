@@ -1,0 +1,1 @@
+export { default } from "file:///C:/Users/marti/OneDrive/Jobb/Development/WebDev/learn-and-play-repos/practice-vue-nuxt-vuetify/nuxt/learn-and-play-nuxt/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"

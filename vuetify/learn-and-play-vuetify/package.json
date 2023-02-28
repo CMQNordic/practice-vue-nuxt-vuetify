@@ -1,0 +1,24 @@
+{
+	"name": "vuetify-3-nuxt-3-playground",
+	"scripts": {
+		"dev": "nuxt dev --analyze",
+		"build": "nuxt build",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"nuxt": "^3.0.0",
+		"vite-plugin-vuetify": "^1.0.0",
+		"vuetify": "^3.0.3"
+	},
+	"devDependencies": {
+		"@fortawesome/fontawesome-svg-core": "^6.2.1",
+		"@fortawesome/free-brands-svg-icons": "^6.2.1",
+		"@fortawesome/free-regular-svg-icons": "^6.2.1",
+		"@fortawesome/free-solid-svg-icons": "^6.2.1",
+		"@fortawesome/vue-fontawesome": "^3.0.2",
+		"@mdi/js": "^7.0.96",
+		"sass": "^1.56.2"
+	}
+}

@@ -1,0 +1,26 @@
+:root {
+	--BG-COLOR: lightblue;
+	--COLOR: red;
+	--USED-YELLOW: yellow;
+	--UNUSED: black;
+}
+
+/* Used styles */
+body {
+	background-color: var(--BG-COLOR);
+	color: var(--COLOR);
+}
+
+.used-centered {
+	text-align: center;
+}
+
+.used-green-text {
+	color: green;
+}
+
+/* including unused style(s) */
+.unused-class-1 {
+	background-color: black;
+}
+

@@ -1,0 +1,22 @@
+@import './_variables';
+@import './_general';
+/* @import '@fortawesome/fontawesome-free/css/all.css';  */
+/* @import '@mdi/font/css/materialdesignicons.css'; */
+
+/* For test and debugging */
+.TEMP_A {
+	background-color: lightyellow;
+	border: 1px dotted red;
+}
+
+.TEMP_B {
+	background-color: lightblue;
+	border: 1px dotted blue;
+	padding: 1px;
+}
+
+.TEMP_C {
+	background-color: lightgreen;
+	border: 1px dotted green;
+	padding: 1px;
+}

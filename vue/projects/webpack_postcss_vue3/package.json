@@ -1,0 +1,37 @@
+{
+   "name": "webpack-with-postcss",
+   "description": "Project template with webpack & PostCSS",
+   "author": "Martin Czerwinski",
+   "version": "1.0.0",
+   "license": "ISC",
+   "scripts": {
+      "serve": "webpack serve",
+      "build": "webpack"
+   },
+   "devDependencies": {
+      "autoprefixer": "^10.4.7",
+      "@vue/compiler-sfc": "^3.2.33",
+      "clean-webpack-plugin": "^4.0.0",
+      "css-loader": "^6.7.1",
+      "css-minimizer-webpack-plugin": "^3.4.1",
+      "fs-extra": "^10.1.0",
+      "html-webpack-plugin": "^5.5.0",
+      "mini-css-extract-plugin": "^2.6.0",
+      "postcss-import": "^14.1.0",
+      "postcss-loader": "^6.2.1",
+      "postcss-mixins": "^9.0.2",
+      "postcss-nested": "^5.0.6",
+      "postcss-simple-vars": "^6.0.3",
+      "style-loader": "^3.3.1",
+      "vue-loader": "^17.0.0",
+      "webpack": "^5.72.1",
+      "webpack-cli": "^4.9.2",
+      "webpack-dev-server": "^4.9.0"
+   },
+   "dependencies": {
+      "core-js": "^3.22.5",
+      "normalize.css": "^8.0.1",
+      "vue": "^3.2.33"
+   }
+}
+

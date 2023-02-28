@@ -1,0 +1,88 @@
+/*  _____________________________________________________ */
+/*  .hero definitions */
+.hero {
+   position: relative;
+
+   /* Fullscreen */
+   width: 100vw;
+   height: 100vh;
+
+   /* TODO TEMP */
+   background-color: green;
+
+   &__content {
+      /* center horizontally */
+      width: 100%;
+      text-align: center;
+
+      /* center vertically */
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      /* make sure content do not overflow parent */
+      box-sizing: border-box;
+
+      /* TODO TEMP */
+      background-color: white;
+      border: thick solid black;
+      @mixin screenMedium {
+         background-color: red;
+      }
+      @mixin screenBig {
+         background-color: yellow;
+      }
+   }
+
+   &__text {
+      margin: 0 auto;
+      padding: 0 0.85rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 3px;
+
+      @mixin screenMedium {
+         line-height: 1.4;
+         padding: 0.5;
+      }
+
+      @mixin screenBig {
+         line-height: 1.6;
+         padding: 0;
+      }
+   }
+
+   &__title {
+      display: block;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+
+      @mixin screenMedium {
+         font-size: 1rem;
+      }
+
+      @mixin screenBig {
+         font-size: 1.2rem;
+      }
+   }
+
+   &__subtitle {
+      display: block;
+      font-size: 1.4rem;
+
+      @mixin screenMedium {
+         font-size: 2rem;
+      }
+
+      @mixin screenBig {
+         font-size: 2.75rem;
+      }
+   }
+
+   &__image {
+      /* shall fill whole parent? */
+      width: 100vw;
+      height: 100vh;
+   }
+}

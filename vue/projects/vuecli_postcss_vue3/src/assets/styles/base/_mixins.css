@@ -1,0 +1,16 @@
+/*******
+* Mixins
+*******/
+
+// 0 <- xs -> 600 <- sm -> 960 <- md -> 1264 <- lg -> 1904 <- x
+@define-mixin screenMedium {
+   @media (min-width: 500px) {
+      @mixin-content;
+   }
+}
+
+@define-mixin screenBig {
+   @media (min-width: 1000px) {
+      @mixin-content;
+   }
+}

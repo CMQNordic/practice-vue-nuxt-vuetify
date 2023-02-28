@@ -1,0 +1,35 @@
+{
+  "name": "template-webpack-postcss",
+  "description": "SPA. Webpack with server, PostCSS",
+  "author": "Martin CZerwinski",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "dev": "webpack serve",
+    "prod": "webpack"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.28",
+    "autoprefixer": "^10.4.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.4.1",
+    "fs-extra": "^10.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.2",
+    "postcss-import": "^14.0.2",
+    "postcss-loader": "^6.2.1",
+    "postcss-mixins": "^9.0.1",
+    "postcss-nested": "^5.0.6",
+    "postcss-simple-vars": "^6.0.3",
+    "style-loader": "^3.3.1",
+    "vue-loader": "^16.8.3",
+    "webpack": "^5.67.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "vue": "^3.2.28"
+  }
+}

@@ -1,0 +1,42 @@
+header {
+	border: 1px dotted gray;
+}
+
+nav {
+	width: 100%;
+	text-align: center;
+	margin: 0.4rem 0;
+}
+
+nav a.router-link-exact-active {
+	color: hsla(160, 100%, 37%, 1);
+	font-weight: 600;
+}
+
+nav a {
+	display: inline-block;
+	padding: 0 1rem;
+	border-left: 1px solid lightgray;
+}
+
+nav a:first-of-type {
+	border: 0;
+}
+
+a,
+.green {
+	text-decoration: none;
+	color: hsla(160, 100%, 37%, 0.8);
+	transition: 0.4s;
+}
+
+@media (hover: hover) {
+	a:hover {
+		background-color: hsla(160, 100%, 37%, 0.2);
+	}
+}
+
+nav a.router-link-exact-active:hover {
+	background-color: transparent;
+}
+

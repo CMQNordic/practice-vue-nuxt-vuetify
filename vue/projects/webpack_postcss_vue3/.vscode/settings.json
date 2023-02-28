@@ -1,0 +1,4 @@
+{
+    // To load CSS classes into "HTML CSS Support" extension for class autocompletion proposals from build code.
+    "css.styleSheets": ["/dist/styles.css"]
+}

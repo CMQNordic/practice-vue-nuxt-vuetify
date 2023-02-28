@@ -1,0 +1,22 @@
+/* _________________________________________ */
+/* Global styles definitions ________________*/
+
+* {
+    font-family: 'Koho', 'Jost', sans-serif;
+    font-size: 1rem;
+    color: #000000;
+}
+
+body {
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+
