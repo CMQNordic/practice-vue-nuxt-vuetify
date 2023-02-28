@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Vue.js | Dev reference</title>
+
+    <!-- development version of Vue, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="mainApp" class="container">
+      <h3>Learning Vue.js</h3>
+      <p>
+        Vue.js
+        <a
+          href="https://github.com/CMQNordic/Vue-And-Nuxt-Cheatsheet#vuejs-and-nuxt--ultimatereferenceguide-"
+          target="viewport"
+        >
+          - Cheatsheet -
+        </a>
+      </p>
+
+      <div id="components">
+				<!-- Using local component-a or ComponentA -->
+				Component A
+				<component-a class="cmp "id="ComponentA"></component-a>
+				Component B
+				<component-b class="cmp" id="ComponentB"></component-b>
+				Component C
+        <component-c class="cmp" id="ComponentC"></component-c>
+      </div>
+
+			<h4>Toggle component dynamically</h4>
+			<button @click="selectedCmp='ComponentA'">ComponentA</button>
+			<button @click="selectedCmp='ComponentB'">ComponentB</button>
+			<button @click="selectedCmp='ComponentC'">ComponentC</button>
+
+			<component class="cmp" :id="selectedCmp" :is="selectedCmp">
+				<span>{{selectedCmp}}</span>
+			</component>
+
+      <!-- Template definition -->
+      <div id="template-c" v-if="false">
+        <h3>Hello from <slot></slot></h3>
+      </div>
+    </div>
+
+    <script>
+      //import cmpC from './ComponentC.vue';
+
+      var cmp = {
+        data: function () {
+          return {
+            title: 'Hello from ',
+          };
+        },
+        template: '<h3>{{title}} <slot></slot></h3>',
+      };
+
+      Vue.component('ComponentA', cmp);
+
+      const vm = new Vue({
+        el: '#mainApp',
+        data: {
+          selectedCmp: null,
+        },
+        components: {
+          ComponentB: cmp,
+          ComponentC: { template: '#template-c' },
+        },
+      });
+    </script>
+
+    <style>
+      #mainApp {
+        background-color: lightgrey;
+        padding: 5px;
+      }
+      #components {
+        background-color: white;
+      }
+      #ComponentA {
+        background-color: yellow;
+      }
+      #ComponentB {
+        background-color: teal;
+      }
+      #ComponentC {
+        background-color: red;
+      }
+			.cmp {
+				margin:8px 0;
+				padding:0;
+			}
+    </style>
+  </body>
+</html>

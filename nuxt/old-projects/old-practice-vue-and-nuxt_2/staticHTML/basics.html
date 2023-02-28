@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic examples</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- APP1 -->
+    <div id="app1" class="app">
+        <h2>APP1</h2>
+        Name:<input v-model="text">
+        <button @click="name=text">Save name</button>
+        <button @click="age++">Increase age</button><br>
+        <p>Text as typed is: <span :class="{'empty': (text.length <= 0)}">{{text}}</span></p>
+        <p><span :class="{'empty': name.length <= 0}">{{name}}</span> is
+            <span :class="{'empty': age <= 0}">{{ age }}</span> years old.</p>
+        <p :class=['info-text'] v-if="showCongrats">Congrats! Right now the age is {{ getAge() }}!</p>
+    </div>
+
+    <!-- APP2 -->
+    <div id="app2"></div>
+
+    <!-- APP3 -->
+    <div id="app3" class="app">
+        <h2>APP3</h2>
+        <my-local-component :level="0"><strong slot="type">Local component</strong></my-local-component>
+        <my-global-component :level="1"><strong slot=type>Global component</strong></my-global-component>
+    </div>
+
+    <!-- APP4 -->
+    <div id="app4" class="app">
+        <h2>APP3</h2>
+        <my-quote v-for="n in 4">
+            <p slot="title">Post {{ n }}</p>
+            <p slot="content">Some content here</p>
+        </my-quote>
+
+        <!-- Component template - invisible -->
+        <template id="my-quote" v-if="false">
+            <div class="component" v-if="!isHidden">
+                <strong>
+                    <slot name="title">default title</slot>
+                </strong>
+                <slot name="content">default content</slot>
+                <button @click="isHidden=true">DELETE</button>
+            </div>
+        </template>
+    </div>
+
+    <script>
+        /* APP1 */
+        var vm1 = new Vue({
+            el: '#app1',
+            data: {
+                text: '',
+                name: '',
+                age: null,
+                showCongrats: false
+            },
+            computed: {
+                getName: function () {
+                    return this.name
+                }
+            },
+            methods: {
+                getAge: function () {
+                    return this.age
+                }
+            },
+            watch: {
+                age: function () {
+                    this.age == 3 ? this.showCongrats = true : this.showCongrats = false;
+                }
+            }
+        })
+
+        /* APP2 */
+        var vm2 = new Vue({
+            el: '#app2',
+            computed: {
+                // We can not access vm1 direct from template, must go though computed attribute.
+                ageInApp1: function () {
+                    return vm1.age
+                }
+            },
+            methods: {
+                handleEvent: function (age, type) {
+                    this.$refs.eventStatus.innerText = 'Last event type: ' + type;
+                    // Only if clicked set age in  APP1
+                    type == 'click' ? vm1.age = age : null;
+                },
+            },
+            mounted: function () {
+                // $refs that we access are not set until until DOM mounted
+                // Change the text of button identified with ref="myButton".
+                this.$refs.myButton.innerText = 'Click here to set age in "APP1" to 3';
+            },
+            template: `<div class="app">
+                                <h2>APP2</h2>
+                                <button ref="myButton" 
+                                        @click="handleEvent(3, $event.type)" 
+                                        @mouseover="handleEvent(null, $event.type)"
+                                        @mouseout="handleEvent(null, $event.type)">
+                                </button>
+                                <p>Age in "APP1" is: {{ ageInApp1 }}</p>
+                                <p class="info-text" ref="eventStatus"></p>
+                            </div>`
+        })
+
+        /* APP3 */
+        // simple component as js-object. 
+        var cmp = {
+            // Note!  this is component and not instance, "data" must a returning function.
+            data: function () {
+                return {
+                    number: 5
+                }
+            },
+            props: {
+                level: {
+                    type: Number,
+                    required: true
+                }
+            },
+            template: `<div class="component">
+                                <slot name="type"></slot> 
+                                Level: {{ level }}
+                                <button @click="level+=1">Increase level</button>
+                            </div>`
+        }
+
+        // Global component definition
+        Vue.component('my-global-component', cmp);
+
+        // local component definition
+        var app3 = new Vue({
+            el: '#app3',
+            components: {
+                MyLocalComponent: cmp,
+            }
+        })
+
+        /* APP3 */
+        // local component definition
+        const app4 = new Vue({
+            el: '#app4',
+            components: {
+                MyQuote: {
+                    data: function () {
+                        return {
+                            isHidden: false
+                        }
+                    },
+                    template: '#my-quote'
+                }
+            }
+        })
+    </script>
+
+    <style>
+        p {
+            margin: 0;
+        }
+
+        .empty {
+            display: inline-block;
+            height: 10px;
+            width: 20px;
+            border: 1px dotted black;
+            background-color: grey;
+        }
+
+        .app {
+            background-color: lightgrey;
+            padding: 5px;
+            margin: 10px 0;
+        }
+
+        .component {
+            background-color: yellow;
+            padding: 3px;
+            margin: 6px 0;
+        }
+
+        .info-text {
+            color: red;
+        }
+    </style>
+</body>
+
+</html>

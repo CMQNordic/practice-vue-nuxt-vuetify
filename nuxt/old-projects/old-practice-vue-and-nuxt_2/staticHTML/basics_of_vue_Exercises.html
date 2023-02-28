@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- ******************************************************************************  -->
+    <div id="exercise1">
+        <p><strong>Exercise 1: HTML template bindings</strong></p>
+        <p> 1) Fill the &lt;p&gt; below with your Name and Age - using Interpolation</p>
+        <p>VueJS is pretty cool - {{name}} ({{age}})</p>
+
+        <p> 2) Output your age, multiplied by 3</p>
+        <p>{{age*3}}</p>
+
+        <p> 3) Call a function to output a random float between 0 and 1 (Math.random())</p>
+        <p>{{getRandomFloat()}}</p>
+
+        <p> 4) Output an image here by binding the "src" attribute</p>
+        <div>
+            <img style="width:100px; height:100px" v-bind:src="image">
+        </div>
+
+        <p> 5) Pre-Populate this input with your name (set the "value" attribute)</p>
+        <div>
+            <input type="text" v-bind:value="name">
+        </div>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#exercise1',
+            data: {
+                name: 'Martin C.',
+                age: '43',
+                image: '/assets/images/image1.JPG'
+            },
+            methods: {
+                getRandomFloat: function () {
+                    return Math.random();
+                }
+            }
+        })
+    </script>
+
+    <!-- ******************************************************************************  -->
+    <div id="exercise2">
+        <p><strong>Exercise 2: Event & Key modifiers</strong></p>
+
+        <p> 1) Show an alert when the Button gets clicked</p>
+        <div>
+            <button v-on:click="buttonClicked()">Show Alert</button>
+        </div>
+
+        <p> 2) Listen to the "keydown" event and store the value in a data property (hint: event.target.value gives you the value)</p>
+        <div>
+            <input type="text" v-on:keydown="keyPressed">
+            <p>{{ keyData }}</p>
+        </div>
+
+        <p> 3) Adjust the example from 2) to only fire if the "key down" is the ENTER key</p>
+        <div>
+            <input type="text" v-on:keydown.enter="enterKeyPressed">
+            <p>{{ keyData2 }}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#exercise2',
+            data: {
+                keyData: 'Initial string, start typing.',
+                keyData2: 'Initial string, start typing.'
+            },
+            methods: {
+                buttonClicked: function (event) {
+                    alert('Alert shown!');
+                },
+                keyPressed: function (event) {
+                    this.keyData = event.target.value;
+                },
+                enterKeyPressed: function (event) {
+                    this.keyData2 = null;
+                    this.keyData2 = event.target.value;
+                }
+            }
+        })
+    </script>
+
+    <!-- ******************************************************************************  -->
+    <div id="exercise3">
+        <p><strong>Exercise 3: Watch</strong></p>
+
+        <p> 1) Show a "result" of 'not there yet' as long as "value" is not equal to 15 - you can change "value" with the buttons. Print 'done' once you did it
+        </p>
+        <div>
+            <p>Current Value: {{ value }}</p>
+            <button @click="value += 5">Add 5</button>
+            <button @click="value += 1">Add 1</button>
+            <p>Result: {{ result }}</p>
+        </div>
+
+        <p> 2) Watch for changes in the "result" and reset the "value" after 5 seconds (hint: setTimeout(..., 5000)</p>
+        <div>
+            Result:
+            <input type="text" :value="result">
+            <p>Value: {{ value }}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#exercise3',
+            data: {
+                value: 0
+            },
+            computed: {
+                result: function () {
+                    return this.value < 15 ? 'Not there yet' : 'Done'
+                }
+            },
+            watch: {
+                result: function () {
+                    console.log('CHANGE');
+                    var vm = this;
+                    setTimeout(function () { vm.value = 0; }, 2000);
+                }
+            }
+        })
+    </script>
+
+    <!-- ******************************************************************************  -->
+    <div id="exercise4">
+
+        <p><strong>Exercise 4: CSS</strong>
+        </p>
+
+        <p> 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new
+            setInterval tick (attach respective class to the div with id "effect" below)</p>
+        <div>
+            <button @click="startEffect()">Start Effect</button>
+            <div id="effect" :class="effectClasses"></div>
+        </div>
+        <br>
+
+        <p> 2) Create a couple of CSS classes and attach them via the array syntax</p>
+        <div :class="['wide', 'green', 'bold']">I got no class :(</div>
+
+        <p> 3) Let the user enter a class name (create some example classes) and attach it</p>
+        <div>
+            Enter green or shrink or both
+            <input type="text" v-model="userInput">
+            <div :class="[{visible: true}, userInput]"></div>
+        </div>
+        <br>
+
+        <p> 4) Let the user enter a class name and enter true/false for another class (create some example classes) and attach the classes</p>
+        <div>
+            <input type="text" v-model="newClass" style="">
+            <input type="text" v-model="isVisible">
+            <div :class="['visible', newClass, {green: isVisible}]"></div>
+        </div>
+
+        <p> 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.</p>
+        <div>
+            <input type='text' v-model="newStyle.backgroundColor">
+            <div :style="newStyle"></div>
+        </div>
+
+        <p> 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button.</p>
+        <div>
+            <button @click="progressWidth=1">
+                Start Progress
+            </button>
+            <div :style="progressStyle100">
+
+                <div class="my-style-terte">
+                    <p>{{p}}</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        .my-style
+    </style>
+
+    <script>
+        new Vue({
+            el: '#exercise4',
+            data: {
+                effectClasses: null,
+                userInput: null,
+                newClass: null,
+                isVisible: null,
+                newStyle: {
+                    width: "100px",
+                    height: '50px',
+                    backgroundColor: 'grey'
+                },
+                progressWidth: 0,
+                progressStyle100: {
+                    marginTop: '10px',
+                    width: '100px',
+                    height: '5px',
+                    backgroundColor: 'lightgrey'
+                }
+            },
+            computed: {
+                progressStyle: function () {
+                    return {
+                        marginTop: '10px',
+                        width: this.progressWidth + 'px',
+                        height: '5px',
+                        backgroundColor: 'grey'
+                    }
+                }
+            },
+            watch: {
+                progressWidth: function () {
+                    var vm = this;
+                    setTimeout(function () {
+                        vm.progressWidth < 100 ? vm.progressWidth += 10 : null;
+                    }, 300);
+                }
+            },
+            methods: {
+                startEffect: function () {
+                    var vm = this;
+                    vm.effectClasses = { highlight: true, shrink: false };
+                    setInterval(function () {
+                        vm.effectClasses.highlight = !vm.effectClasses.highlight;
+                        vm.effectClasses.shrink = !vm.effectClasses.shrink;
+                    }, 1000);
+                }
+            }
+        })
+    </script>
+
+    <style>
+        #effect {
+            width: 100px;
+            height: 100px;
+            margin-top: 5px;
+            background-color: grey;
+            border: 1px dotted black;
+        }
+
+        .highlight {
+            background-color: red !important;
+            width: 200px !important;
+        }
+
+        .shrink {
+            background-color: green !important;
+            width: 50px !important;
+        }
+
+        .wide {
+            width: 200px !important;
+        }
+
+        .green {
+            background-color: green !important;
+        }
+
+        .visible {
+            width: 100px;
+            height: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: grey;
+            border: 1px dotted black;
+        }
+
+        .shrink {
+            width: 50px;
+        }
+
+        .bold {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <!-- ******************************************************************************  -->
+    <div id="exercise5">
+        <p><strong>Exercise 5: Conditionals and looping</strong></p>
+
+        <p> 1) Hook up the button to toggle the display of the two paragraphs. Use both v-if and v-show and inspect the elements to see the difference</p>
+        <div>
+            <button @click="isVisible = !isVisible">Toggle</button>
+            <p v-if="isVisible">You either see me ...</p>
+            <p v-else>...or me</p>
+        </div>
+
+        <p> 2) Output an
+        <ul> of array elements of your choice. Also print the index of each element. </p>
+            <ul>
+                <li v-for="i in [1,2,3,]">{{ i }}</li>
+            </ul>
+
+            <p> 3) Print all key-value pairs of the following object: {title: 'Lord of the Rings', author: 'J.R.R. Tolkiens', books: '3'}. Also print the index
+                of each item. </p>
+            <br>
+            <ul>
+                <li v-for="(v, k, i) in {title: 'Lord of the Rings', author: 'J.R.R. Tolkiens', books: '3'}">{{ k }},{{ v }}, {{ i }}</li>
+            </ul>
+
+            <p> 4) Print the following object (only the values) and also create a nested loop for the array: {name: 'TESTOBJECT', data: [1.67, 1.33, 0.98,
+                2.21]} (hint: use v-for and v-if to achieve this) </p>
+            <br>
+            <ul>
+                <li v-for="value in testObject">
+                    {{value}}
+                    <div v-if="Array.isArray(value)" v-for="elem in value">{{ elem }}</div>
+                </li>
+            </ul>
+    </div>
+
+    <script>
+        const A = ['Excel', 'Power BI', 'PowerPoint', 'SharePoint', 'OneDrive', 'Windows', 'VSCode'];
+
+        new Vue({
+            el: '#exercise5',
+            data: {
+                isVisible: true,
+                testObject: {
+                    name: 'TESTOBJECT',
+                    id: 10,
+                    data: [1.67, 1.33, 0.98, 2.21]
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
